@@ -1,37 +1,35 @@
-import { Link } from 'expo-router';
-import { useState } from 'react';
+import { Link, } from 'expo-router';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Index() {
-  const [state, setState] = useState(0);
-
-  function handleSum() {
-    setState(state + 1);
-  }
-
-  function handleMinus() {
-
-    if (state > 0) {
-      setState(state - 1);
-    }
-  }
   return (
     <View style={styles.container}>
 
-      <Text style={styles.title}>{state}</Text>
+      <Text style={styles.title}>Tela de Sign In</Text>
       <View style={styles.separator} />
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleMinus} activeOpacity={0.6} style={styles.button}>
-          <Text style={styles.label}>-</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleSum} activeOpacity={0.6} style={styles.button}>
-          <Text style={styles.label}>+</Text>
-        </TouchableOpacity>
+
+        <Link href="/dashboard/products" asChild>
+          <TouchableOpacity activeOpacity={0.6} style={styles.button}>
+            <Text style={styles.label}>Entrar</Text>
+          </TouchableOpacity>
+        </Link>
+
+        <Link href="/forgot-password" asChild >
+          <TouchableOpacity activeOpacity={0.6}>
+            <Text style={styles.link}>Esqueci a senha</Text>
+          </TouchableOpacity>
+        </Link>
       </View>
 
-      <Link href="/double" style={styles.link}> Go to Double</Link>
-
+      <View style={styles.verticalButtonContainer}>
+        <Link href="/sign-up" asChild >
+          <TouchableOpacity activeOpacity={0.6} style={styles.button}>
+            <Text style={styles.label}>Cadastrar</Text>
+          </TouchableOpacity>
+        </Link>
+      </View>
     </View>
   );
 }
@@ -47,9 +45,15 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 64,
+    fontSize: 48,
     fontWeight: 'bold',
     color: 'black',
+  },
+
+  subtitle: {
+    fontSize: 32,
+    fontWeight: 'medium',
+    color: 'gray',
   },
 
   separator: {
@@ -64,32 +68,39 @@ const styles = StyleSheet.create({
     width: '100%',
     gap: 32,
     justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+
+
+  verticalButtonContainer: {
+    width: '100%',
+    gap: 16,
   },
   button: {
     backgroundColor: 'black',
-    padding: 10,
-    borderRadius: 100,
-    margin: 10,
-    height: 50,
-    width: 50,
+    padding: 12,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
   },
 
   label: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: 'medium',
     color: 'white',
   },
 
+  LinkContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    gap: 32,
+    justifyContent: 'space-evenly',
+  },
   link: {
+    fontSize: 14,
+    fontWeight: 'medium',
     color: 'black',
-    fontSize: 24,
-    fontWeight: 'bold',
-
-    textAlign: 'center',
-    marginTop: 32,
     textDecorationLine: 'underline',
   }
 });
