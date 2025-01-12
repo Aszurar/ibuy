@@ -1,7 +1,18 @@
-import { Link } from 'expo-router';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Link, useRouter } from 'expo-router';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Products() {
+  const router = useRouter();
+
+
+  function handleGoBack() {
+    if (!router.canGoBack()) {
+      return Alert.alert('Você não pode voltar para a tela anterior!');
+    }
+
+    router.back();
+  }
+
   return (
     <View style={styles.container}>
 
@@ -14,6 +25,10 @@ export default function Products() {
           <Text style={styles.label}>Navegar para produto 10</Text>
         </TouchableOpacity>
       </Link>
+
+      <TouchableOpacity activeOpacity={0.6} style={styles.button} onPress={handleGoBack}>
+        <Text style={styles.label}>Voltar</Text>
+      </TouchableOpacity>
 
     </View>
   );
